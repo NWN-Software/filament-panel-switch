@@ -65,6 +65,14 @@ class PanelSwitch extends Component
                     return '';
                 }
 
+                foreach ($static->getPanels() as $panel) {
+                    $excludes = [];
+                    if (!filament()->auth()->user()->can("page " . ucfirst($panel->getId()))) {
+                        $excludes[] = $panel->getId();
+                    }
+                    $static->excludes($excludes);
+                }
+
                 return view('filament-panel-switch::panel-switch-menu', [
                     'currentPanel' => $static->getCurrentPanel(),
                     'canSwitchPanels' => $static->isAbleToSwitchPanels(),
