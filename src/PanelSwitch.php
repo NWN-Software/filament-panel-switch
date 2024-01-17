@@ -73,6 +73,10 @@ class PanelSwitch extends Component
                     $static->excludes($excludes);
                 }
 
+                if (count($static->getPanels()) - count($excludes) <= 1) {
+                    return '';
+                }
+
                 return view('filament-panel-switch::panel-switch-menu', [
                     'currentPanel' => $static->getCurrentPanel(),
                     'canSwitchPanels' => $static->isAbleToSwitchPanels(),
