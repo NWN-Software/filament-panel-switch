@@ -67,7 +67,7 @@ class PanelSwitch extends Component
 
                 foreach ($static->getPanels() as $panel) {
                     $excludes = [];
-                    if (!filament()->auth()->user()->can("page " . ucfirst($panel->getId()))) {
+                    if (!filament()->auth()->user()->can("panel " . ucfirst($panel->getId()))) {
                         $excludes[] = $panel->getId();
                     }
                     $static->excludes($excludes);
